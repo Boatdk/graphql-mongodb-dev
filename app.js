@@ -21,14 +21,14 @@ const user = userId => {
       return { 
         ...user._doc,
         _id: user.id,
-        createdEvents: events.bind(this, user._doc.createdEvents)};
+        createdEvents: event.bind(this, user._doc.createdEvents)};
     })
     .catch(err => {
       throw err;
     })
 }
 
-const events = eventIds => {
+const event = eventIds => {
   return Event.find({_id: {$in: eventIds}})
     .then(events => {
         return events.map(event => {
